@@ -2,5 +2,5 @@
 user=$1
 portFile=/opt/${user}/port.txt
 value=`cat ${portFile}`
-echo "${value}"
-lsof -i:${value}
+echo "Kill port ${value}"
+kill -9 $(lsof -t -i:${value})
