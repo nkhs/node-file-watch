@@ -100,7 +100,7 @@ function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-var port = randomIntFromInterval(1000, 50000);
+var port = randomIntFromInterval(10000, 50000);
 fs.writeFileSync(`${DIR}/port.txt`, '' + port);
 server.listen(port, function listening() {
   console.log(`HTTP Listening on http://${config.host_url}:${server.address().port}`);
