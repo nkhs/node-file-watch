@@ -1,2 +1,2 @@
 #!/bin/bash
-node server.js user2
+node server.js $0
