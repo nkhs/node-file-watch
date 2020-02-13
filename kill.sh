@@ -1,5 +1,6 @@
 #!/bin/bash
-portFile = "/opt/${$1}/port.txt"
+user = $1
+portFile = "/opt/${user}/port.txt"
 if [ -e portFile ]
 then
     value=`cat ${portFile}`
