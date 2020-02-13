@@ -17,7 +17,7 @@
         }
     </style>
     <script>
-        var port = 47767;
+        var port = 15571;
         $(document).ready(function () {
             var conn = new WebSocket(`ws://167.99.199.12:${port}`);
             conn.onopen = function (e) {
