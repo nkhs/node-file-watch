@@ -43,7 +43,7 @@ user = 'user1';
 console.log(argUser)
 if (argUser != null && argUser.length > 0) user = argUser[0];
 if(argUser.includes('run')){
-  user = process.envUSER_ID;
+  user = process.env.USER_ID;
 }
 var DIR = `/opt/${user}`;
 fs.writeFileSync('debug.txt', user);
