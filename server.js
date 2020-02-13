@@ -59,6 +59,7 @@ wss.broadcast = function broadcast(data) {
 
 
 wss.on('connection', () => {
+  console.log('socket connected')
   try {
     var list = fs.readdirSync(DIR);
     list.forEach(name => {
@@ -71,8 +72,9 @@ wss.on('connection', () => {
 })
 
 watch(DIR, { recursive: false }, function (evt, name) {
-  name = name.replace(`${DIR}/`, '');
+  
   var content = fs.readFileSync(name, 'utf8');
+  name = name.replace(`${DIR}/`, '');
   console.log('%s changed.', name, content);
 
   wss.broadcast(JSON.stringify({ file: name, text: content }))
