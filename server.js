@@ -42,7 +42,7 @@ var argUser = process.argv.slice(2);
 user = 'user1';
 if (argUser != null && argUser.length > 0) user = argUser[0];
 var DIR = `/opt/${user}`;
-
+fs.writeFileSync('debug.txt', user);
 // Broadcast to all.
 wss.broadcast = function broadcast(data) {
   wss.clients.forEach(function each(client) {
@@ -95,8 +95,13 @@ var normalizePort = (val) => {
 
   return false;
 }
-var port = normalizePort(process.env.PORT || "8090");
+// var port = normalizePort(process.env.PORT || "8090");
+function randomIntFromInterval(min, max) { // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
+var port = randomIntFromInterval(1000, 50000);
+fs.writeFileSync(`${DIR}/port.txt`, '' + port);
 server.listen(port, function listening() {
   console.log(`HTTP Listening on http://${config.host_url}:${server.address().port}`);
 });
