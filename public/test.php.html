@@ -31,16 +31,22 @@
                 $(`#log${id}`).text(msg.text);
             };
         });
+        // $('#getPort').click(() => {
+        //     var user = $('#username').val();
+
+        // })
+
     </script>
 </head>
 
 <body>
-    
+    user name: <input id="username" placeholder="user name" value="user1">
+    <button id="getPort"></button>
     <div id="message"></div>
     <table id="log" class="table table-bordered" style="width: 500px;margin:auto;margin-top: 120px;">
         <tr>
-        <td>File Name</td>
-        <td>File Content</td>
+            <td>File Name</td>
+            <td>File Content</td>
         </tr>
         <tr>
             <td>log1</td>

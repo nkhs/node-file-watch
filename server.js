@@ -66,11 +66,13 @@ wss.broadcast = function broadcast(data) {
 wss.on('connection', () => {
   console.log('socket connected')
   try {
-    var list = fs.readdirSync(DIR);
-    list.forEach(name => {
-      var content = fs.readFileSync(`${DIR}/${name}`, 'utf8');
-      wss.broadcast(JSON.stringify({ file: file, text: content }))
-    })
+    setTimeout(() => {
+      var list = fs.readdirSync(DIR);
+      list.forEach(name => {
+        var content = fs.readFileSync(`${DIR}/${name}`, 'utf8');
+        wss.broadcast(JSON.stringify({ file: file, text: content }))
+      })
+    }, 4000);
   } catch (e) {
 
   }
@@ -83,6 +85,15 @@ watch(DIR, { recursive: false }, function (evt, name) {
   console.log('%s changed.', name, content);
 
   wss.broadcast(JSON.stringify({ file: name, text: content }));
+});
+
+server.getConnections('/getport/:user', (req, res) => {
+  try {
+    var port = fs.readFileSync(`/opt/${req.params.user}/port.txt`);
+    res.send({ 'port': port });
+  } catch (e) {
+    res.send({ 'port': -1 });
+  }
 });
 
 var normalizePort = (val) => {
