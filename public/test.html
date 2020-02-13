@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            var conn = new WebSocket('ws://localhost:8090');
+            conn.onopen = function (e) {
+                console.log("Connection established!");
+            };
+
+            conn.onmessage = function (e) {
+                console.log(e.data);
+            };
+        });
+    </script>
+</head>
+
+<body>
+
+    <p>If you click on me, I will disappear.</p>
+    <p>Click me away!</p>
+    <p>Click me too!</p>
+
+</body>
+
+</html>
