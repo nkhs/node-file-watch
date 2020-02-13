@@ -42,7 +42,8 @@ var argUser = process.argv.slice(2);
 user = 'user1';
 console.log(argUser)
 if (argUser != null && argUser.length > 0) user = argUser[0];
-if(argUser.includes('run')){
+if (process.env.USER_ID != null) {
+  console.log('ENV')
   user = process.env.USER_ID;
 }
 var DIR = `/opt/${user}`;
