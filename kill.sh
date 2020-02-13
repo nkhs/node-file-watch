@@ -6,5 +6,5 @@ then
     value=`cat ${portFile}`
     echo value
 else
-    echo "nok"
+    echo "nok${portFile}"
 fi
