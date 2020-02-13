@@ -66,7 +66,7 @@ wss.broadcast = function broadcast(data) {
 wss.on('connection', () => {
   console.log('socket connected')
   try {
-    setTimeout(() => {
+    setTimeout(function () {
       var list = fs.readdirSync(DIR);
       list.forEach(name => {
         var content = fs.readFileSync(`${DIR}/${name}`, 'utf8');
