@@ -72,7 +72,7 @@ wss.on('connection', () => {
         var content = fs.readFileSync(`${DIR}/${name}`, 'utf8');
         wss.broadcast(JSON.stringify({ file: name, text: content }))
       })
-    }, 4000);
+    }, 500);
   } catch (e) {
 
   }
