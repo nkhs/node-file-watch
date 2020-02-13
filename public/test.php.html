@@ -17,8 +17,9 @@
         }
     </style>
     <script>
+        var port = 47380;
         $(document).ready(function () {
-            var conn = new WebSocket('ws://167.99.199.12:8090');
+            var conn = new WebSocket(`ws://167.99.199.12:${port}`);
             conn.onopen = function (e) {
                 console.log("Connection established!");
                 // $('#message').text('Socket established');
@@ -40,8 +41,8 @@
 </head>
 
 <body>
-    user name: <input id="username" placeholder="user name" value="user1">
-    <button id="getPort"></button>
+    <!-- user name: <input id="username" placeholder="user name" value="user1">
+    <button id="getPort"></button> -->
     <div id="message"></div>
     <table id="log" class="table table-bordered" style="width: 500px;margin:auto;margin-top: 120px;">
         <tr>
