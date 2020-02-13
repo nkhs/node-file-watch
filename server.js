@@ -37,6 +37,11 @@ const server = http.createServer(app);
 const wss = new WebSocket.Server({
   server
 });
+var argUser = process.argv.slice(2);
+
+user = 'user1';
+if (argUser != null && argUser.length > 0) user = argUser[0];
+var DIR = `opt/${user}`;
 
 // Broadcast to all.
 wss.broadcast = function broadcast(data) {
@@ -51,13 +56,22 @@ wss.broadcast = function broadcast(data) {
     }
   });
 };
-var argUser = process.argv.slice(2);
 
-user = 'user1';
-if (argUser != null && argUser.length > 0) user = argUser[0];
-var DIR = `opt/${user}`;
+
+wss.on('connection', () => {
+  try {
+    var list = fs.readdirSync(DIR);
+    list.forEach(name => {
+      var content = fs.readFileSync(`${DIR}/${name}`, 'utf8');
+      wss.broadcast(JSON.stringify({ file: file, text: content }))
+    })
+  } catch (e) {
+
+  }
+})
 
 watch(DIR, { recursive: false }, function (evt, name) {
+  name = name.replace(`${DIR}/`, '');
   var content = fs.readFileSync(name, 'utf8');
   console.log('%s changed.', name, content);
 
