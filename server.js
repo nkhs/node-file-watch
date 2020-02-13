@@ -87,14 +87,14 @@ watch(DIR, { recursive: false }, function (evt, name) {
   wss.broadcast(JSON.stringify({ file: name, text: content }));
 });
 
-server.getConnections('/getport/:user', (req, res) => {
-  try {
-    var port = fs.readFileSync(`/opt/${req.params.user}/port.txt`);
-    res.send({ 'port': port });
-  } catch (e) {
-    res.send({ 'port': -1 });
-  }
-});
+// server.getConnections('/getport/:user', (req, res) => {
+//   try {
+//     var port = fs.readFileSync(`/opt/${req.params.user}/port.txt`);
+//     res.send({ 'port': port });
+//   } catch (e) {
+//     res.send({ 'port': -1 });
+//   }
+// });
 
 var normalizePort = (val) => {
   var port = parseInt(val, 10);
