@@ -72,7 +72,7 @@ wss.on('connection', () => {
 })
 
 watch(DIR, { recursive: false }, function (evt, name) {
-  
+  if (!name.endsWith('.log')) return;
   var content = fs.readFileSync(name, 'utf8');
   name = name.replace(`${DIR}/`, '');
   console.log('%s changed.', name, content);
