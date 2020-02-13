@@ -32,7 +32,6 @@
 </head>
 
 <body>
-    <h1>my email is</h1>
     <div id="message"></div>
     <div id="log">
         <!-- <div><span class='fileName'>${msg.file}</span><span class='message'>${msg.file}</span></div> -->

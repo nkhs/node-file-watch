@@ -41,7 +41,7 @@ var argUser = process.argv.slice(2);
 
 user = 'user1';
 if (argUser != null && argUser.length > 0) user = argUser[0];
-var DIR = `opt/${user}`;
+var DIR = `/opt/${user}`;
 
 // Broadcast to all.
 wss.broadcast = function broadcast(data) {
@@ -77,7 +77,7 @@ watch(DIR, { recursive: false }, function (evt, name) {
   name = name.replace(`${DIR}/`, '');
   console.log('%s changed.', name, content);
 
-  wss.broadcast(JSON.stringify({ file: name, text: content }))
+  wss.broadcast(JSON.stringify({ file: name, text: content }));
 });
 
 var normalizePort = (val) => {
