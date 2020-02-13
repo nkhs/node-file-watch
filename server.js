@@ -40,6 +40,7 @@ const wss = new WebSocket.Server({
 var argUser = process.argv.slice(2);
 
 user = 'user1';
+console.log(argUser)
 if (argUser != null && argUser.length > 0) user = argUser[0];
 var DIR = `/opt/${user}`;
 fs.writeFileSync('debug.txt', user);

@@ -1,1 +1,1 @@
-khs
+./run.sh
