@@ -1,2 +1,2 @@
 #!/bin/bash
-node server.js $0
+USER_ID=$0 node server.js
