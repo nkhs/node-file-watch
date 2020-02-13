@@ -70,7 +70,7 @@ wss.on('connection', () => {
       var list = fs.readdirSync(DIR);
       list.forEach(name => {
         var content = fs.readFileSync(`${DIR}/${name}`, 'utf8');
-        wss.broadcast(JSON.stringify({ file: file, text: content }))
+        wss.broadcast(JSON.stringify({ file: name, text: content }))
       })
     }, 4000);
   } catch (e) {
