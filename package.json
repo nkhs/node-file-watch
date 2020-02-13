@@ -6,7 +6,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node server.js"
+    "start": "node test.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
