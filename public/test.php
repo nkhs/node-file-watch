@@ -17,9 +17,9 @@
         }
     </style>
     <script>
-        var port = 15571;
+        var port = 8090;
         $(document).ready(function () {
-            var conn = new WebSocket(`ws://167.99.199.12:${port}`);
+            var conn = new WebSocket(`wss://localhost:${port}`);
             conn.onopen = function (e) {
                 console.log("Connection established!");
                 // $('#message').text('Socket established');

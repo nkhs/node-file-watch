@@ -1,5 +1,5 @@
 const express = require("express");
-const http = require("http");
+const https = require("https");
 const WebSocket = require("ws");
 var fs = require('fs');
 const path = require("path");
@@ -9,6 +9,16 @@ const config = require('./config');
 var watch = require('node-watch');
 const cors = require('cors');
 const app = express();
+
+var http_options = {
+    key: fs.readFileSync('./tdn-ssl/HSSL-5e2bccb3bc761.key'),
+    cert : fs.readFileSync('./tdn-ssl/todonetworks_com.crt'),
+    ca: [
+      fs.readFileSync('./tdn-ssl/AddTrustExternalCARoot.crt'),
+      fs.readFileSync('./tdn-ssl/SectigoRSADomainValidationSecureServerCA.crt'),
+      fs.readFileSync('./tdn-ssl/USERTrustRSAAddTrustCA.crt')
+    ]
+  }
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -32,7 +42,7 @@ app.use(function (err, req, res, next) {
   }
 });
 
-const server = http.createServer(app);
+const server = https.createServer(http_options, app);
 
 const wss = new WebSocket.Server({
   server
@@ -117,7 +127,8 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 var port = randomIntFromInterval(10000, 50000);
+
 fs.writeFileSync(`${DIR}/port.txt`, '' + port);
 server.listen(port, function listening() {
-  console.log(`HTTP Listening on http://${config.host_url}:${server.address().port}`);
+  console.log(`HTTPS Listening on https://${config.host_url}:${server.address().port}`);
 });
